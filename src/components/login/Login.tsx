@@ -24,7 +24,7 @@ function Login() {
         console.log(successfulLoginResponse);
         axios.defaults.headers.common['Authorization'] = "Bearer " + token;
         if (successfulLoginResponse){
-            navigate('/home');
+            navigate('/');
         }
       } catch (e: any) {
         console.error(e)
@@ -41,6 +41,7 @@ function Login() {
     <div className='login'>
         <input className='username' type="text" placeholder=' Username' onChange={(event) => setUserName(event.target.value)}/>
         <input className='password' type="password" placeholder=' Password' onChange={(event) => setPassword(event.target.value)}/>
+        <button type='submit' onClick={onLogin}>Submit</button>
     </div>
     
   )

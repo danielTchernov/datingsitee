@@ -2,7 +2,6 @@ import { AppState } from "./app-state";
 import { Action } from "./action";
 import { ActionType } from "./action-type";
 import ISuccesfullLoginData from "../models/ISuccesfullLoginData";
-import { act } from "react-dom/test-utils";
 
 const appStateInitialValue = new AppState();
 
@@ -12,7 +11,6 @@ export function reduce(oldAppState: AppState = {userDetails:{id:0 , age:0 , gend
     const newAppState = { ...oldAppState };
 
     switch (action.type) {
-            
         case ActionType.setUserDetails:
             let successfulLogin:ISuccesfullLoginData = action.payload.successfulLoginResponse;
             newAppState.userDetails = successfulLogin;
