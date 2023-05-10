@@ -1,3 +1,6 @@
 export enum ActionType {
-    setUserDetails
+    setUserDetails,
+    SaveUsersList,
+    RemoveUserFromUsersList,
+    SaveUserToShow
 }

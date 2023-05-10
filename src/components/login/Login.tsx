@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { IoMailOutline } from "react-icons/io5";
+import { BiLockOpenAlt } from "react-icons/bi";
 import jwt_decode from 'jwt-decode';
 import ISuccesfullLoginData from '../../models/ISuccesfullLoginData';
 import { ActionType } from '../../redux/action-type';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import "./Login.css";
 
 function Login() {
     let [userName , setUserName] = useState("");
@@ -38,11 +41,30 @@ function Login() {
       }
     }
   return (
-    <div className='login'>
-        <input className='username' type="text" placeholder=' Username' onChange={(event) => setUserName(event.target.value)}/>
-        <input className='password' type="password" placeholder=' Password' onChange={(event) => setPassword(event.target.value)}/>
-        <button type='submit' onClick={onLogin}>Submit</button>
-    </div>
+    <div className="login">
+    <div className="form-box">
+        <div className="form-value">
+          <h2 className="h2">Login</h2>
+          <div className="inputbox">
+            <IoMailOutline className="icon"/>
+            <input type="text" required onChange={(event) => setUserName(event.target.value)}/>
+            <label>Email</label>
+          </div>
+          <div className="inputbox">
+            <BiLockOpenAlt className="icon"/>
+            <input type="password" required onChange={(event) => setPassword(event.target.value)}/>
+            <label>Password</label>
+          </div>
+          <div className="forget">
+            <label ><input type="checkbox"/>Remember Me  <a className="forget-href" href="#">Forget Password</a></label>        
+          </div>
+            <button className="button" onClick={onLogin}>Log in</button>
+            <div className="register">
+              <p>Don't have a account? <Link to="/registration" >Sign up</Link></p>
+            </div>
+       </div>
+   </div>
+  </div>
     
   )
 }

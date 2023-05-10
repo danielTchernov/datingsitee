@@ -6,7 +6,7 @@ import ISuccesfullLoginData from "../models/ISuccesfullLoginData";
 const appStateInitialValue = new AppState();
 
 // This function is NOT called direcrtly by you
-export function reduce(oldAppState: AppState = {userDetails:{id:0 , age:0 , gender:"" , nickName:""}}, action: Action): AppState {
+export function reduce(oldAppState: AppState = appStateInitialValue, action: Action): AppState {
     // Cloning the oldState (creating a copy)
     const newAppState = { ...oldAppState };
 
@@ -14,6 +14,19 @@ export function reduce(oldAppState: AppState = {userDetails:{id:0 , age:0 , gend
         case ActionType.setUserDetails:
             let successfulLogin:ISuccesfullLoginData = action.payload.successfulLoginResponse;
             newAppState.userDetails = successfulLogin;
+            break;
+        
+        case ActionType.SaveUsersList:
+            newAppState.usersList = action.payload.users;
+            break;
+
+        case ActionType.RemoveUserFromUsersList:
+            newAppState.usersList.filter(user => user.id != action.payload.userId)
+            newAppState.usersList = [...newAppState.usersList];
+            break;
+
+        case ActionType.SaveUserToShow:
+            newAppState.userToShow = action.payload.userToShow;
             break;
     }
 
